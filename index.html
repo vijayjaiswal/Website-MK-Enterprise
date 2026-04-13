@@ -179,39 +179,53 @@
                 </div>
                 
                 <div class="contact-form-wrapper">
-                    <!-- Note: action points to dummy Google Forms URL. Ensure script.js blocks default submit for AJAX -->
-                    <form id="enquiryForm" action="https://docs.google.com/forms/u/0/d/e/DUMMY_FORM_ID/formResponse" method="POST">
+                    <!-- Form posts to Google Forms asynchronously via script.js -->
+                    <form id="enquiryForm" action="https://docs.google.com/forms/d/e/1FAIpQLScVq3sA4kOgV5RDy2v4Gc9JHMH32A3gGE6qMQkJh-RZfubgNw/formResponse" method="POST">
                         <div class="form-group">
-                            <label for="entry.1000001">Name *</label>
-                            <!-- Use dummy entry.* names here -->
-                            <input type="text" id="name" name="entry.1000001" placeholder="John Doe" required>
+                            <label for="entry.1460627208">Name *</label>
+                            <input type="text" id="name" name="entry.1460627208" placeholder="John Doe" required>
                         </div>
                         
                         <div class="form-group-row">
                             <div class="form-group">
-                                <label for="entry.1000002">Email *</label>
-                                <input type="email" id="email" name="entry.1000002" placeholder="john@example.com" required>
+                                <label for="entry.1218740400">Email *</label>
+                                <input type="email" id="email" name="entry.1218740400" placeholder="john@example.com" required>
                             </div>
                             <div class="form-group">
-                                <label for="entry.1000003">Phone *</label>
-                                <input type="tel" id="mobile" name="entry.1000003" placeholder="+91 XXXXXXXXXX" required>
+                                <label for="entry.336020497">Phone *</label>
+                                <input type="tel" id="mobile" name="entry.336020497" placeholder="+91 XXXXXXXXXX" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="entry.1000004">Address</label>
-                            <input type="text" id="address" name="entry.1000004" placeholder="Your location in Pune" required>
+                            <label for="entry.1897670972">Address</label>
+                            <input type="text" id="address" name="entry.1897670972" placeholder="Your location in Pune" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="entry.1000005">Nature of Work</label>
-                            <select id="work-nature" name="entry.1000005" required>
+                            <label for="entry.886369533">Nature of Work</label>
+                            <select id="work-nature" name="entry.886369533" required>
                                 <option value="" disabled selected>Select Requirement</option>
                                 <option value="Residential">Residential</option>
                                 <option value="Commercial">Commercial</option>
                                 <option value="Single Piece">Single Furniture Piece</option>
                                 <option value="Other">Other</option>
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entry.1422351604">Preferred method of initial contact</label>
+                            <select id="contact-method" name="entry.1422351604" required>
+                                <option value="" disabled selected>Select Method</option>
+                                <option value="Email">Email</option>
+                                <option value="Phone Call">Phone Call</option>
+                                <option value="Text Message">Text Message</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entry.630060475">Approximate Project Start Date</label>
+                            <input type="date" id="start-date" name="entry.630060475" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">Send Enquiry</button>
