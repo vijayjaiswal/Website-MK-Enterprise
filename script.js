@@ -48,6 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerText = 'Sending...';
 
             const formData = new FormData(form);
+            const urlParams = new URLSearchParams();
+
+            for (const pair of formData.entries()) {
+                // Check if it's the date field
+                if (pair[0] === 'entry.630060475' && pair[1]) {
+                    // Split YYYY-MM-DD
+                    const dateParts = pair[1].split('-');
+                    if (dateParts.length === 3) {
+                        urlParams.append('entry.630060475_year', dateParts[0]);
+                        urlParams.append('entry.630060475_month', dateParts[1]);
+                        urlParams.append('entry.630060475_day', dateParts[2]);
+                    }
+                } else {
+                    urlParams.append(pair[0], pair[1]);
+                }
+            }
 
             // Fetch to submit to Google Forms
             // Note: Google Forms returns a CORS error or redirects, we use mode 'no-cors'
@@ -55,7 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(form.action, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: urlParams
             })
             .then(() => {
                 formMessage.innerText = 'Thank you! Your enquiry has been sent. We will get back to you shortly.';
