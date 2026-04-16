@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // --- Mobile Menu Toggle ---
     const mobileMenu = document.querySelector('.mobile-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -76,20 +76,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: urlParams
             })
-            .then(() => {
-                formMessage.innerText = 'Thank you! Your enquiry has been sent. We will get back to you shortly.';
-                formMessage.className = 'form-message success';
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Error submitting form:', error);
-                formMessage.innerText = 'There was an error sending your enquiry. Please try calling us instead.';
-                formMessage.className = 'form-message error';
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'Send Enquiry';
-            });
+                .then(() => {
+                    formMessage.innerText = 'Thank you! Your enquiry has been sent. We will get back to you shortly.';
+                    formMessage.className = 'form-message success';
+
+                    // Construct WhatsApp message
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const mobile = document.getElementById('mobile').value;
+                    const address = document.getElementById('address').value;
+                    const workNature = document.getElementById('work-nature').value;
+                    const contactMethod = document.getElementById('contact-method').value;
+                    const startDate = document.getElementById('start-date').value;
+
+                    const whatsappMsg = `Hello MK-Enterprises! I have a new enquiry:
+
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${mobile}
+*Address:* ${address || 'N/A'}
+*Work Nature:* ${workNature}
+*Preferred Contact:* ${contactMethod}
+*Start Date:* ${startDate}`;
+
+                    const encodedMsg = encodeURIComponent(whatsappMsg);
+                    const whatsappUrl = `https://wa.me/919971896100?text=${encodedMsg}`;
+                    //window.open(whatsappUrl, '_blank');
+
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    formMessage.innerText = 'There was an error sending your enquiry. Please try calling us instead.';
+                    formMessage.className = 'form-message error';
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'Send Enquiry';
+                });
         });
     }
 });
